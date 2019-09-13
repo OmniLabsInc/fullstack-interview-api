@@ -1,0 +1,65 @@
+openapi: "3.0.1"
+
+info:
+  title: "Fullstack-Interview-API"
+  version: "0.0.1"
+
+servers:
+  - url: http://localhost:8080/api/v1
+    description: The local development web server
+paths:
+  /echo:
+    get:
+      summary: returns any query parameters passed to it
+      responses:
+        200:
+          description: an object
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/Query"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: returns any body passed to it
+      requestBody:
+        description: an object
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Body"
+      responses:
+        200:
+          description: query body
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Body"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    Error:
+      title: "Error"
+      type: object
+      properties:
+        name:
+          type: string
+        message:
+          type: string
+
+    Query:
+      title: "Query"
+      type: object

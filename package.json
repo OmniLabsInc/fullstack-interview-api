@@ -1,0 +1,126 @@
+{
+  "name": "fullstack-interview-api",
+  "version": "0.0.1",
+  "description": "API server to act as quickstart for fullstack interview",
+  "main": "dist",
+  "scripts": {
+    "dev": "nodemon src",
+    "docs": "yarn run docs-generate && yarn run docs-serve",
+    "docs-generate": "jsdoc -c ./jsdoc.config.json",
+    "docs-serve": "http-server ./jsdocs/ -o",
+    "lint": "./node_modules/.bin/eslint --format=pretty --ext .js .",
+    "lint-fix": "yarn --silent lint --fix; exit 0",
+    "start": "node src",
+    "test": "NODE_ENV=test jest --detectOpenHandles",
+    "test-coverage": "http-server ./coverage/lcov-report/ -o"
+  },
+  "engines": {
+    "node": "~10"
+  },
+  "author": "Omni Labs, Inc <admin@omniinc.com>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.4",
+    "helmet": "^3.14.0"
+  },
+  "peerDependencies": {
+    "mongoose": "^5.6.12"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "http-server": "^0.11.1",
+    "jest": "^24.7.1",
+    "jsdoc": "^3.6.1",
+    "nodemon": "^1.18.5",
+    "prettier": "^1.16.4",
+    "supertest": "^4.0.2"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      ".git",
+      "node_modules/**/node_modules"
+    ],
+    "env": {
+      "NODE_ENV": "development"
+    },
+    "ext": "js,json"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --format=pretty --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --parser json --write",
+      "git add"
+    ],
+    "*.{yml,md}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ],
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "verbose": true,
+    "bail": true,
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!**/node_modules/**",
+      "!**/__tests__/**",
+      "!**/coverage/**",
+      "!**/docs/**",
+      "!**/jsdocs/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 75,
+        "lines": 80,
+        "statements": 80
+      }
+    },
+    "coverageDirectory": "coverage"
+  },
+  "eslintConfig": {
+    "extends": [
+      "airbnb-base",
+      "eslint-config-prettier"
+    ],
+    "plugins": [
+      "eslint-plugin-prettier"
+    ],
+    "env": {
+      "node": true,
+      "jest": true
+    },
+    "rules": {
+      "no-console": 0,
+      "prettier/prettier": "error",
+      "no-param-reassign": 1,
+      "no-underscore-dangle": "off"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all"
+  }
+}
