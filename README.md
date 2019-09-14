@@ -14,6 +14,5 @@ API server to act as quickstart for fullstack interview
 
 ## Interview notes
 
-- Let's use mongo as our database.
 - We might not be able to finish the complete issue. It's okay! We are trying to determine what thought process goes into developing this. The goal is to understand how we work together on problems.
 - Let's share the screen and try to think out loud as you are solving the provided issue. Feel free to ask more clarifying questions as you go along.
